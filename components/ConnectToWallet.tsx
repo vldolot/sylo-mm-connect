@@ -2,7 +2,7 @@ import { Fragment, useCallback, useEffect, useState } from "react";
 
 import { Button } from "@/components";
 import SyloIcon from "@/components/icons/SyloIcon";
-import { Assets } from "@/libs/constants";
+import { Assets, RootNetworks } from "@/libs/constants";
 import { Asset, useMetaMask, useRootApi, useWatchAsset } from "@/libs/hooks";
 import { formatBalance } from "@/libs/utils";
 
@@ -50,11 +50,14 @@ export default function ConnectToWallet() {
 					concludedText="Connected"
 					buttonClassName="bg-indigo-700"
 				>
-					Connected
+					Disconnect?
 				</Button>
 			)}
 
-			{wallet?.isActive && currentChainId ? (
+			{wallet?.isActive &&
+			currentChainId &&
+			Assets[currentChainId] &&
+			currentChainId === RootNetworks.porcini.ChainId.InDec ? (
 				<>
 					<div>
 						<p className="text-sm font-medium text-white">Connected account:</p>
@@ -75,7 +78,9 @@ export default function ConnectToWallet() {
 						</Fragment>
 					))}
 				</>
-			) : null}
+			) : (
+				<div>Please select Porcini (Root Network) on MetaMask</div>
+			)}
 		</div>
 	);
 }

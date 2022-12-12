@@ -16,9 +16,6 @@ export const useWatchAsset = (): WatchAssetHook => {
 		async (symbol: Asset) => {
 			if (!currentChainId || !wallet?.isActive) return;
 
-			Object.entries(Assets[currentChainId]).map(([key, value]) => {
-				console.log(`${key} -> ${JSON.stringify(value)}`);
-			});
 			const asset = Assets[currentChainId][symbol];
 
 			return await metaMask.watchAsset({

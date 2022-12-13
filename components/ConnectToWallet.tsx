@@ -1,6 +1,6 @@
 import { Fragment, useCallback, useEffect, useState } from "react";
 
-import { Button } from "@/components";
+import { Button, SendEVMFeeProxy } from "@/components";
 import SyloIcon from "@/components/icons/SyloIcon";
 import { Assets, RootNetworks } from "@/libs/constants";
 import { Asset, useMetaMask, useRootApi, useWatchAsset } from "@/libs/hooks";
@@ -75,6 +75,8 @@ export default function ConnectToWallet() {
 							>
 								Add {key} token to MetaMask?
 							</Button>
+
+							<SendEVMFeeProxy />
 						</Fragment>
 					))}
 				</>
